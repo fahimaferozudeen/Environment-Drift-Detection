@@ -1,0 +1,4 @@
+Environment,Configuration,Expected,Actual,Risk
+Production,python_version,3.12,3.11,HIGH
+Production,port,8080,9090,MEDIUM
+Production,memory,8GB,4GB,MEDIUM

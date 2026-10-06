@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Environment Drift Detection Dashboard</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    width: 180px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #343a40;
+    color: white;
+}
+
+.risk {
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.high {
+    background-color: #ffcccc;
+    color: #b30000;
+}
+
+.medium {
+    background-color: #ffe5b4;
+    color: #cc6600;
+}
+
+.low {
+    background-color: #ccffcc;
+    color: #006600;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #777;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<h1>Environment Drift Detection Dashboard</h1>
+
+<p class="subtitle">
+Automated Multi-Stage DevOps Environment Monitoring
+</p>
+
+
+<div class="cards">
+
+<div class="card">
+<h2>3</h2>
+<p>Total Drift</p>
+</div>
+
+<div class="card">
+<h2>1</h2>
+<p>High Risk</p>
+</div>
+
+<div class="card">
+<h2>2</h2>
+<p>Medium Risk</p>
+</div>
+
+<div class="card">
+<h2>0</h2>
+<p>Low Risk</p>
+</div>
+
+</div>
+
+
+<h2>Detected Configuration Drift</h2>
+
+
+<table>
+
+<tr>
+<th>Environment</th>
+<th>Configuration</th>
+<th>Expected</th>
+<th>Actual</th>
+<th>Risk</th>
+</tr>
+
+
+    <tr>
+        <td>Production</td>
+        <td>python_version</td>
+        <td>3.12</td>
+        <td>3.11</td>
+        <td><span class="risk high">HIGH</span></td>
+    </tr>
+    
+    <tr>
+        <td>Production</td>
+        <td>port</td>
+        <td>8080</td>
+        <td>9090</td>
+        <td><span class="risk medium">MEDIUM</span></td>
+    </tr>
+    
+    <tr>
+        <td>Production</td>
+        <td>memory</td>
+        <td>8GB</td>
+        <td>4GB</td>
+        <td><span class="risk medium">MEDIUM</span></td>
+    </tr>
+    
+
+</table>
+
+
+<div class="footer">
+
+Generated automatically on 2026-10-06 20:35:20
+
+</div>
+
+</body>
+
+</html>

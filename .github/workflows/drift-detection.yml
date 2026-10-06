@@ -1,0 +1,49 @@
+name: Environment Drift Detection
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  drift-detection:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
+      - name: Run Drift Detection
+        run: |
+          python src/drift_detector.py
+
+      - name: Generate CSV Report
+        run: |
+          python src/report_generator.py
+
+      - name: Generate HTML Dashboard
+        run: |
+          python src/html_report.py
+
+      - name: Upload Drift Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: environment-drift-reports
+          path: |
+            reports/drift_report.csv
+            reports/drift_dashboard.html
