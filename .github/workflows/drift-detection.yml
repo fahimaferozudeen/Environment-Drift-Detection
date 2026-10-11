@@ -1,3 +1,4 @@
+
 name: Environment Drift Detection
 
 on:
@@ -10,11 +11,9 @@ on:
 
 jobs:
   drift-detection:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v6
 
@@ -29,21 +28,30 @@ jobs:
           pip install pyyaml
 
       - name: Run Drift Detection
-        run: |
-          python src/drift_detector.py
+        id: drift_check
+        continue-on-error: true
+        run: python src/drift_detector.py
 
       - name: Generate CSV Report
-        run: |
-          python src/report_generator.py
+        if: always()
+        run: python src/report_generator.py
 
       - name: Generate HTML Dashboard
-        run: |
-          python src/html_report.py
+        if: always()
+        run: python src/html_report.py
 
       - name: Upload Drift Reports
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: environment-drift-reports
           path: |
             reports/drift_report.csv
             reports/drift_dashboard.html
+          if-no-files-found: error
+
+      - name: Fail Pipeline if Production Drift Exists
+        if: steps.drift_check.outcome == 'failure'
+        run: |
+          echo "Production drift detected. Failing the pipeline."
+          exit 1
